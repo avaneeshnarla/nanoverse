@@ -29,14 +29,16 @@ import java.util.function.Function;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ContinuumProbabilitySupplierTest extends TestBase {
+public class ContinuumHillProbabilitySupplierTest extends TestBase {
 
     private Function<Agent, Double> valueLookup;
     private double coefficient;
     private double offset;
+    private double halfpoint;
+    private double maximum;
     private Agent cell, child;
 
-    private ContinuumProbabilitySupplier query;
+    private ContinuumHillProbabilitySupplier query;
 
     @Before
     public void init() throws Exception {
@@ -49,8 +51,11 @@ public class ContinuumProbabilitySupplierTest extends TestBase {
 
         coefficient = 3.0;
         offset = 0.5;
+        halfpoint = 1.0;
+        maximum = 0.3;
 
-        query = new ContinuumProbabilitySupplier(valueLookup, cell, coefficient, offset);
+        query = new ContinuumHillProbabilitySupplier(valueLookup, cell,
+                coefficient, offset, halfpoint, maximum);
     }
 
     //@Test

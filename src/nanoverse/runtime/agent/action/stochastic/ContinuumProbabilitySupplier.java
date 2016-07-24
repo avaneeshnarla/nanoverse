@@ -55,6 +55,12 @@ public class ContinuumProbabilitySupplier extends ProbabilitySupplier {
     public Double get() {
         double value = valueLookup.apply(cell);
         double probability = (coefficient * value) + offset;
+        //System.out.print("Reached normal");
+        //double probability =0;
+        //if(offset+value!=0)
+        // probability = (coefficient * value)/(offset+value);
+        //System.out.println("Offset + Value = "+(offset+value)
+        //        +"\nProbability = "+probability);
         logger.debug("p(x) = {}", probability);
         return probability;
     }

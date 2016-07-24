@@ -139,6 +139,7 @@ public class LayerManager {
     @Deprecated
     public void addContinuumLayer(ContinuumLayer continuumLayer) {
         String id = continuumLayer.getId();
+        // System.out.println(id);
         continuumLayers.put(id, continuumLayer);
     }
 }

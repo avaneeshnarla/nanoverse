@@ -29,14 +29,17 @@ import java.util.function.Function;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ContinuumProbabilitySupplierTest extends TestBase {
+public class ContinuumHillLinProbabilitySupplierTest extends TestBase {
 
     private Function<Agent, Double> valueLookup;
     private double coefficient;
     private double offset;
+    private double halfpoint;
+    private double maximum;
+    private Function<Agent, Double> substrateLookup;
     private Agent cell, child;
 
-    private ContinuumProbabilitySupplier query;
+    private ContinuumHillLinProbabilitySupplier query;
 
     @Before
     public void init() throws Exception {
@@ -44,13 +47,19 @@ public class ContinuumProbabilitySupplierTest extends TestBase {
         child = mock(Agent.class);
 
         valueLookup = (Function<Agent, Double>) mock(Function.class);
+        substrateLookup = (Function<Agent, Double>) mock(Function.class);
         when(valueLookup.apply(cell)).thenReturn(1.0);
         when(valueLookup.apply(child)).thenReturn(2.0);
 
         coefficient = 3.0;
         offset = 0.5;
+        halfpoint = 1.0;
+        maximum = 0.3;
 
-        query = new ContinuumProbabilitySupplier(valueLookup, cell, coefficient, offset);
+        query = new ContinuumHillLinProbabilitySupplier(valueLookup,
+                substrateLookup,
+                cell,
+                coefficient, offset, halfpoint, maximum);
     }
 
     //@Test
